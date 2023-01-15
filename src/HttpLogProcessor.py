@@ -41,3 +41,13 @@ class HttpLogProcessor:
       else:
         status_code_count[status_code] = 1
     return status_code_count
+
+  def get_total_unique_ip_addresses(self) -> int:
+    """
+    Count the number of unique IP addresses.
+    """
+    unique_ip_adresses = set()
+    for line in self.logs:
+      unique_ip_adresses.add(line["ip"])
+    return len(unique_ip_adresses)
+    
