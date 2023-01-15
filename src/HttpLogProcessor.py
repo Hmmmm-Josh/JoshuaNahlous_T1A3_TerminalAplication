@@ -28,3 +28,16 @@ class HttpLogProcessor:
     for line in self.logs:
       total_traffic += int(line["response_size"])
     return total_traffic
+
+  def get_status_code_count(self) -> dict[str, int]:
+    """
+    Count the number of status codes in a file.
+    """
+    status_code_count = {}
+    for line in self.logs:
+      status_code = line["status_code"]
+      if status_code in status_code_count:
+        status_code_count[status_code] += 1
+      else:
+        status_code_count[status_code] = 1
+    return status_code_count
