@@ -19,3 +19,12 @@ class HttpLogProcessor:
     Count the number of lines in a file.
     """
     return len(self.logs)
+
+  def get_total_traffic(self) -> int:
+    """
+    Sum the traffic in bytes for all requests in a file.
+    """
+    total_traffic: int = 0
+    for line in self.logs:
+      total_traffic += int(line["response_size"])
+    return total_traffic
