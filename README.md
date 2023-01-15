@@ -26,7 +26,7 @@ Mockaroo was used to create a fake IP data logs https://www.mockaroo.com/
 
 ## How to Run
 * Make sure the latest Python is insatlled
-* Run `python main.py ./src/programming-task-example-data.log`
+* Run `python main.py ./src/programming-task-example-data.log`and add the desired function on the end `[-h] [--lines LINES] [--status_codes STATUS_CODES] [--traffic TRAFFIC] [--unique_clients UNIQUE_CLIENTS] [--most_active_clients MOST_ACTIVE_CLIENTS] [--most_visited_paths  MOST_VISITED_PATHS]`
 * Follow the input prompts...
 * arguments displayed to run in code are... `[-h] [--lines LINES] [--status_codes STATUS_CODES] [--traffic TRAFFIC] [--unique_clients UNIQUE_CLIENTS] [--most_active_clients MOST_ACTIVE_CLIENTS] [--most_visited_paths  MOST_VISITED_PATHS]` insert these into code for a desired outcome
 
