@@ -1,84 +1,46 @@
-import heapq
-import collections
-import re
+import argparse
+from HttpLogProcessor import HttpLogProcessor
 
-LOG_LINE_REGEX = r'^(?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}).*\[(?P<timestamp>.*)\]\s"(?P<verb>[A-Z]+)\s(?P<path>[\w\/]+)\s+(?P<protocol>[\w\/\.]+)"\s(?P<status_code>\d+)\s(?P<response_size>\d+).*'
+class Main:
 
-class HttpLogProcessor:
-  def __init__(self, file_path: str):
-    pattern = re.compile(LOG_LINE_REGEX)
-    self.logs: list[dict[str, str]] = []
-    with open(file_path) as file:
-      for line in file:
-        match = pattern.match(line)
-        if match:
-          self.logs.append(match.groupdict())
-
-  def get_total_lines(self) -> int:
-    """
-    Count the number of lines in a file.
-    """
-    return len(self.logs)
-
-  def get_total_traffic(self) -> int:
-    """
-    Sum the traffic in bytes for all requests in a file.
-    """
-    total_traffic: int = 0
-    for line in self.logs:
-      total_traffic += int(line["response_size"])
-    return total_traffic
-
-  def get_status_code_count(self) -> dict[str, int]:
-    """
-    Count the number of status codes in a file.
-    """
-    status_code_count = {}
-    for line in self.logs:
-      status_code = line["status_code"]
-      if status_code in status_code_count:
-        status_code_count[status_code] += 1
-      else:
-        status_code_count[status_code] = 1
-    return status_code_count
-
-
-  def get_total_unique_ip_addresses(self) -> int:
-    """
-    Count the number of unique IP addresses.
-    """
-    unique_ip_adresses = set()
-    for line in self.logs:
-      unique_ip_adresses.add(line["ip"])
-    return len(unique_ip_adresses)
-
-  def get_most_active_ip_addresses(self) -> list[str]:
-    """
-    Calculate the top 3 most active IP addresses.
-    """
-    active_ip_adresses = []
-    for line in self.logs:
-      active_ip_adresses.append(line["ip"])
-    return self.most_frequent(active_ip_adresses, 3)
+  def __init__(self):
+    self.parser = argparse.ArgumentParser(description='Process some HTTP log files.')
+    self.parser.add_argument(dest='file', type=str, help="The file to read")
     
-  def get_most_active_paths(self) -> list[str]:
-    """
-    Calculate the top 3 most visited URLs.
-    """
-    visited_url_sites = []
-    for line in self.logs:
-      visited_url_sites.append(line["path"])
-    return self.most_frequent(visited_url_sites, 3)
-        
-  def most_frequent(self, items: list[str], k: int) -> list[str]:
-    """
-    Most frequent K elements implemented with heap.
-    """
-    res = []
-    dict = collections.Counter(items)
-    for val, count in dict.items():
-      if len(res) < k:
-        heapq.heappush(res, (count, val))
-      else:
-        heapq.heappushpop(res, (count, val))
-    return [val for _, val in res]
+    self.parser.add_argument('--lines', nargs='?', const=True, help='count the number of lines in the file')
+    self.parser.add_argument('--status_codes', nargs='?', const=True, help='count the number of status codes in the file')
+    self.parser.add_argument('--traffic', nargs='?', const=True, help='sum the traffic in bytes for all requests in the file')
+    self.parser.add_argument('--unique_clients', nargs='?', const=True, help='Count the number of unique IP adresses in the file')
+    self.parser.add_argument('--most_active_clients', nargs='?', const=True, help='Calculate the top 3 most active IP addresses in the file')
+    self.parser.add_argument('--most_visited_paths', nargs='?', const=True, help='Calculate the top 3 most visited URLs in file')
+    
+  def run(self):
+    args = self.parser.parse_args()
+    
+    if not args.file and (args.lines or args.status_codes or args.traffic or args.unique_clients or args.most_active_clients or args.most_visited_paths):
+      raise Exception('Please provide an argument!')
+
+    parser = HttpLogProcessor(args.file)
+    
+    if args.lines:
+      print(f'Number of lines in {args.file}: {parser.get_total_lines()}')
+    
+    if args.traffic:
+      print(f'Total traffic in bytes in {args.file}: {parser.get_total_traffic()}')
+    
+    if args.status_codes:
+      print(f'Number of status codes in {args.file}: {parser.get_status_code_count()}')
+
+    if args.unique_clients:
+     
+      print(f'Number of unique clients in {args.file}: {parser.get_total_unique_ip_addresses()}')
+      
+    if args.most_active_clients:
+      print(f'Number of most active clients in {args.file}: {parser.get_most_active_ip_addresses()}')
+      
+    if args.most_visited_paths:
+      print(f'Most  in {args.file}: {parser.get_most_active_paths()}')
+
+if __name__ == "__main__":
+  main = Main()
+  main.run()
