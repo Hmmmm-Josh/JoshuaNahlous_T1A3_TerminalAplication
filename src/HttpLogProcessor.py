@@ -59,3 +59,12 @@ class HttpLogProcessor:
     for line in self.logs:
       active_ip_adresses.append(line["ip"])
     return self.most_frequent(active_ip_adresses, 3)
+    
+  def get_most_active_paths(self) -> list[str]:
+    """
+    Calculate the top 3 most visited URLs.
+    """
+    visited_url_sites = []
+    for line in self.logs:
+      visited_url_sites.append(line["path"])
+    return self.most_frequent(visited_url_sites, 3)
