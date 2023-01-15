@@ -50,4 +50,12 @@ class HttpLogProcessor:
     for line in self.logs:
       unique_ip_adresses.add(line["ip"])
     return len(unique_ip_adresses)
-    
+
+  def get_most_active_ip_addresses(self) -> list[str]:
+    """
+    Calculate the top 3 most active IP addresses.
+    """
+    active_ip_adresses = []
+    for line in self.logs:
+      active_ip_adresses.append(line["ip"])
+    return self.most_frequent(active_ip_adresses, 3)
