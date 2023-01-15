@@ -40,3 +40,7 @@ class Main:
       
     if args.most_visited_paths:
       print(f'Most  in {args.file}: {parser.get_most_active_paths()}')
+
+if __name__ == "__main__":
+  main = Main()
+  main.run()
