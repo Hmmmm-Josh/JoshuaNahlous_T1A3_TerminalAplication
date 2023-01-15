@@ -1,11 +1,11 @@
-# JoshuaNahlous_T1A3_TerminalAplication
+# JoshuaNahlous_T1A3_TerminalApplication
  T1A3 - Terminal Application IP log reader
 
 #### Provide full attribution to referenced sources (where applicable).
 
 
 #### Link to Source Control Repository
-* 
+* https://github.com/Hmmmm-Josh/JoshuaNahlous_T1A3_TerminalApplication
 
 #### Link to Slide Deck Video
 
