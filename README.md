@@ -1,14 +1,14 @@
 # JoshuaNahlous_T1A3_TerminalApplication
  T1A3 - Terminal Application IP log reader
 
-#### Provide full attribution to referenced sources (where applicable).
-Mockaroo was used to create a fake IP data logs https://www.mockaroo.com/
-
 #### Link to Source Control Repository
 * https://github.com/Hmmmm-Josh/JoshuaNahlous_T1A3_TerminalApplication
 
 #### Link to Slide Deck Video
 * 
+#### Provide full attribution to referenced sources (where applicable).
+Mockaroo was used to create a fake IP data logs https://www.mockaroo.com/
+
 
 ### Features within the application
 * Count the number of unique IP addresses.
