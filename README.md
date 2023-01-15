@@ -9,7 +9,6 @@
 #### Provide full attribution to referenced sources (where applicable).
 Mockaroo was used to create a fake IP data logs https://www.mockaroo.com/
 
-
 ### Features within the application
 * Count the number of unique IP addresses.
 * * `--unique_clients` allows the user to find the most unique IP adresses within the logs.
@@ -24,11 +23,17 @@ Mockaroo was used to create a fake IP data logs https://www.mockaroo.com/
 
 
 
-## How to Run
+## How to Run: Main Program
 * Make sure the latest Python is insatlled
 * Run `python main.py ./src/programming-task-example-data.log`and add the desired function on the end `[-h] [--lines LINES] [--status_codes STATUS_CODES] [--traffic TRAFFIC] [--unique_clients UNIQUE_CLIENTS] [--most_active_clients MOST_ACTIVE_CLIENTS] [--most_visited_paths  MOST_VISITED_PATHS]`
 * Follow the input prompts...
 * arguments displayed to run in code are... `[-h] [--lines LINES] [--status_codes STATUS_CODES] [--traffic TRAFFIC] [--unique_clients UNIQUE_CLIENTS] [--most_active_clients MOST_ACTIVE_CLIENTS] [--most_visited_paths  MOST_VISITED_PATHS]` insert these into code for a desired outcome
+
+
+## How to Run: Test Program
+* Make sure Pytest is installed
+* Run `pytest test_HttpLogProcessor.py`
+  This will Run several Tests within the Program
 
 ## CLI Usage
 ```
@@ -103,12 +108,4 @@ It then iterates through the Counter object and for each string, `val`, and its 
 This results in the `res` list containing `k` tuples with the most frequent `val` and its corresponding count in descending order.
 
 Finally it returns a list containing only the most frequent `val` by iterating through the `res` list and extracting the second element of each tuple, which is the `val`.
-
 ---
-
-
-
-
-
-
-
