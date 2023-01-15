@@ -13,3 +13,9 @@ class HttpLogProcessor:
         match = pattern.match(line)
         if match:
           self.logs.append(match.groupdict())
+
+  def get_total_lines(self) -> int:
+    """
+    Count the number of lines in a file.
+    """
+    return len(self.logs)
