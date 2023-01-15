@@ -5,7 +5,8 @@
 * https://github.com/Hmmmm-Josh/JoshuaNahlous_T1A3_TerminalApplication
 
 #### Link to Slide Deck Video
-* 
+* https://youtu.be/BjnWsqA1JGo 
+
 #### Provide full attribution to referenced sources (where applicable).
 Mockaroo was used to create a fake IP data logs https://www.mockaroo.com/
 
