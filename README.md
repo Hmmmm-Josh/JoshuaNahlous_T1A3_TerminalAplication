@@ -32,8 +32,7 @@ Mockaroo was used to create a fake IP data logs https://www.mockaroo.com/
 
 ## How to Run: Test Program
 * Make sure Pytest is installed
-* Run `pytest test_HttpLogProcessor.py`
-  This will Run several Tests within the Program
+* Run `pytest test_HttpLogProcessor.py`This will Run several Tests within the Program
 
 ## CLI Usage
 ```
@@ -108,4 +107,6 @@ It then iterates through the Counter object and for each string, `val`, and its 
 This results in the `res` list containing `k` tuples with the most frequent `val` and its corresponding count in descending order.
 
 Finally it returns a list containing only the most frequent `val` by iterating through the `res` list and extracting the second element of each tuple, which is the `val`.
+
+
 ---
