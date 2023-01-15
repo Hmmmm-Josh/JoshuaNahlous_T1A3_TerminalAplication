@@ -68,3 +68,16 @@ class HttpLogProcessor:
     for line in self.logs:
       visited_url_sites.append(line["path"])
     return self.most_frequent(visited_url_sites, 3)
+        
+  def most_frequent(self, items: list[str], k: int) -> list[str]:
+    """
+    Most frequent K elements implemented with heap.
+    """
+    res = []
+    dict = collections.Counter(items)
+    for val, count in dict.items():
+      if len(res) < k:
+        heapq.heappush(res, (count, val))
+      else:
+        heapq.heappushpop(res, (count, val))
+    return [val for _, val in res]
